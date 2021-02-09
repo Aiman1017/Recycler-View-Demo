@@ -3,6 +3,7 @@ package com.example.recyclerviewdemo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.recyclerviewdemo.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -11,7 +12,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val recyclerView = binding.recycleViewMain
+        val recyclerView = findViewById<RecyclerView>(R.id.recycle_view_main)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = PostAdapter()
     }
