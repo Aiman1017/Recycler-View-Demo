@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.recyclerviewdemo.MockDatabase.Companion.createMockData
 import com.example.recyclerviewdemo.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -14,6 +15,7 @@ class MainActivity : AppCompatActivity() {
 
         val recyclerView = findViewById<RecyclerView>(R.id.recycle_view_main)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = PostAdapter()
+        val dummyList = createMockData()
+        recyclerView.adapter = PostAdapter(dummyList)
     }
 }
