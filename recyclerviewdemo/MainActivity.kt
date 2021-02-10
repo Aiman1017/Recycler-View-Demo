@@ -15,7 +15,10 @@ class MainActivity : AppCompatActivity() {
 
         val recyclerView = findViewById<RecyclerView>(R.id.recycle_view_main)
         recyclerView.layoutManager = LinearLayoutManager(this)
+        //Call the dummy data
         val dummyList = createMockData()
+
+        //Pass the data in the Adapter
         recyclerView.adapter = PostAdapter(dummyList)
     }
 }
