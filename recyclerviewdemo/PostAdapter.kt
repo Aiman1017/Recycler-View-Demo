@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 //Template View Adapter
-class PostAdapter(val dummyData: ArrayList<Post>) : RecyclerView.Adapter<PostAdapter.PostViewHolder>(){
+class PostAdapter(val dummyData: ArrayList<Post>, val myListener: OnPostClickListener) : RecyclerView.Adapter<PostAdapter.PostViewHolder>(){
 
     //Add reference
     //The View will references to ViewHolder by postView
@@ -30,15 +30,9 @@ class PostAdapter(val dummyData: ArrayList<Post>) : RecyclerView.Adapter<PostAda
         override fun onClick(v: View?) {
             val position = adapterPosition
             if(v?.id == editPost.id){
-                //The post that we want to update
-                val clickedPost = dummyData[position]
-                clickedPost.title = "Updated title"
-                clickedPost.body = "Updated body"
-                this@PostAdapter.notifyItemChanged(position)
+                myListener.onEditPost(position)
             }else {
-                dummyData.removeAt(position)
-                //The adapter will notify the view and remove the item
-                this@PostAdapter.notifyItemRemoved(position)
+                myListener.onDeletePost(position)
             }
         }
     }
@@ -64,12 +58,7 @@ class PostAdapter(val dummyData: ArrayList<Post>) : RecyclerView.Adapter<PostAda
     }
 
     interface OnPostClickListener{
-        fun onEditPost(position: Int){
-
-        }
-
-        fun onDeletePost(position: Int){
-
-        }
+        fun onEditPost(position: Int)
+        fun onDeletePost(position: Int)
     }
 }
